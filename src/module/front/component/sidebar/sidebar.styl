@@ -1,0 +1,136 @@
+@import '~front_assets/styles/common.styl';
+.sidebar {
+  position: fixed;
+  background: $white;
+  width: 300px;
+  opacity: 1;
+  transition: all .2s ease-in;
+  height: 100%;
+  z-index: 999;
+  .overlay {
+    background: #4d4d4d;
+    width: 100%;
+    height: 180px;
+    position: absolute;
+  }
+  .intrude-less {
+    width: 76%;
+    text-align: center;
+    margin: 112px auto 0;
+    .header {
+      .profile-pic{
+        display: block;
+        border: 5px solid #fff;
+        border-radius: 300px;
+        width: 128px;
+        height: 128px;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+        background: #88acdb;
+        -webkit-transition: all .2s ease-in;
+        display: -webkit-box;
+        -webkit-box-orient: horizontal;
+        -webkit-box-pack: center;
+        -webkit-box-align: center;
+        text-align: center;
+        background: url('../../assets/images/head.jpg') no-repeat center
+        background-size: cover
+        img {
+          border-radius: 300px;
+          opacity: 1;
+          -webkit-transition: all .2s ease-in;
+        }
+      }
+      .header-author{
+        text-align: center;
+        margin: .67em 0;
+        font-family: Roboto,serif;
+        font-size: 30px;
+        transition: .3s;
+        a{
+          color: #696969;
+        }
+      }
+      .header-subtitle {
+        text-align: center;
+        color: #999;
+        font-size: 14px;
+        line-height: 25px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+      .header-menu {
+        font-weight: 300;
+        line-height: 31px;
+        text-transform: uppercase;
+        float: none;
+        min-height: 150px;
+        margin-left: -12px;
+        text-align: center;
+        display: -webkit-box;
+        -webkit-box-orient: horizontal;
+        -webkit-box-pack: center;
+        -webkit-box-align: center;
+        a {
+          font-size: 14px;
+          min-width: 300px;
+          color: #696969;
+        }
+      }
+      .header-smart-menu{
+        font-size: 12px;
+        margin-bottom: 20px;
+        span {
+          color: #696969;
+        }
+      }
+      .header-nav{
+        .social{
+          margin-top: 10px;
+          text-align: center;
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+          -webkit-box-pack: center;
+          -ms-flex-pack: center;
+          justify-content: center;
+          a.github{
+            background: #afb6ca;
+            border: 1px solid #afb6ca;
+          }
+          a.weibo{
+            background: #aaf;
+            border: 1px solid #aaf;
+          }
+          a{
+            border-radius: 50%;
+            display: -moz-inline-stack;
+            display: inline-block;
+            vertical-align: middle;
+            zoom: 1;
+            margin: 0 8px 15px;
+            transition: .3s;
+            text-align: center;
+            color: #fff;
+            opacity: .7;
+            width: 28px;
+            height: 28px;
+            line-height: 32px;
+            i {
+              font-size 16px
+            }
+            img{
+              width 100%
+            }
+          }
+        }
+      }
+    }
+  }
+}
