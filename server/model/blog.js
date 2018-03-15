@@ -12,7 +12,7 @@ let blogSchema = new Schema({
     required: true
   },
   createTime: {
-    type: String,
+    type: Date,
 		required: true
   },
 	title: {
@@ -30,7 +30,7 @@ let blogSchema = new Schema({
 });
 
 /**
- * 用户注册
+ * 保存博客
  */
 blogSchema.methods.saveBlog = function() {
 	return new Promise((resolve, reject) => {

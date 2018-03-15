@@ -75,7 +75,7 @@ class Api extends Server {
    */
   async getUserBlog(params = {}) {
     try {
-      let result = await this.axios('POST', '/api/admin/getUserBlog', params)
+      let result = await this.axios('GET', '/api/admin/getUserBlog', params)
       if (result && result.status === 200) {
         return result;
       } else {

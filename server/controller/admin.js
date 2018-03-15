@@ -83,8 +83,8 @@ router.post('/postBlog', async (ctx, next) => {
 		title: body.title,
 		tag: body.tag,
 		content: body.content,
-		author: ctx.session.token,
-		createTime: new Date().toLocaleDateString()
+		author: ctx.request.header.authorization,
+		createTime: new Date()
 	});
 	try {
 		await blog.saveBlog()
@@ -95,6 +95,35 @@ router.post('/postBlog', async (ctx, next) => {
 		ctx.body = {
 			msg: error
 		};
+		throw error;
+	}
+})
+
+/**
+ * 管理系统用户获取所有文章
+ */
+router.get('/getUserBlog', async (ctx, next) => {
+	console.log(ctx.request.header.authorization)
+	try {
+		await Blog.find({
+			author: ctx.request.header.authorization
+		}, (err, doc) => {
+			if (err) {
+				ctx.response.status = 400;
+				ctx.response.body = {
+					message: 'get user blog error'
+				}
+			} else {
+				ctx.body = {
+					data: doc
+				}
+			}
+		})
+	} catch (error) {
+		ctx.response.status = 400;
+		ctx.response.body = {
+			message: 'get user blog error'
+		}
 		throw error;
 	}
 })

@@ -45,7 +45,7 @@ export default class Server {
              * 报错默认跳转到登录页面
              */
             default:
-              throw new Error('服务器报错了')
+              throw new Error('服务器错误')
           }
         }
         return Promise.reject(error);
