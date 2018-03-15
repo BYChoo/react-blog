@@ -3,6 +3,7 @@
  */
 const setLocalStorage = async function(key, val) {
   if (typeof(Storage) !== "undefined") {
+    console.log(key,val)
     localStorage.setItem(key, val);
   } else {
     throw new Error('请升级你的浏览器');

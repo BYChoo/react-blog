@@ -3,13 +3,13 @@ import BraftEditor from 'braft-editor'
 import 'braft-editor/dist/braft.css'
 
 export default class Editor extends React.Component {
-  state = {
-    htmlContent: ''
+  handleHTMLChange = (htmlContent) => {
+    htmlContent = 'asdasdasd';
+    this.props.handleContent(htmlContent)
   }
+
   render() {
     const editorProps = {
-      height: 500,
-      initialContent: this.state.content,
       onHTMLChange: this.handleHTMLChange
     }
     return (
@@ -17,8 +17,5 @@ export default class Editor extends React.Component {
         <BraftEditor {...editorProps} />
       </div>
     )
-  }
-  handleHTMLChange = (htmlContent) => {
-    this.setState({ htmlContent })
   }
 }

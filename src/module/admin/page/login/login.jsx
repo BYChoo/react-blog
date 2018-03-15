@@ -70,7 +70,7 @@ export default class Login extends Component {
    * 生命周期: 组件创建前调用
    */
   componentWillMount() {
-    this.checkUserState();
+    // this.checkUserState();
   }
 
   render() {
