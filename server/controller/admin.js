@@ -103,22 +103,16 @@ router.post('/postBlog', async (ctx, next) => {
  * 管理系统用户获取所有文章
  */
 router.get('/getUserBlog', async (ctx, next) => {
-	console.log(ctx.request.header.authorization)
 	try {
-		await Blog.find({
+		let doc = {
 			author: ctx.request.header.authorization
-		}, (err, doc) => {
-			if (err) {
-				ctx.response.status = 400;
-				ctx.response.body = {
-					message: 'get user blog error'
-				}
-			} else {
-				ctx.body = {
-					data: doc
-				}
+		}
+		let result = await new Blog().findBlog(doc);
+		if (result) {
+			ctx.body = {
+				data: result
 			}
-		})
+		}
 	} catch (error) {
 		ctx.response.status = 400;
 		ctx.response.body = {

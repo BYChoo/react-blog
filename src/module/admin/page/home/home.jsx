@@ -8,7 +8,8 @@ export default class Home extends Component {
   constructor() {
     super();
     this.state = {
-      blogList: []
+      blogList: [],
+      tagList: []
     }
   }
 
@@ -20,14 +21,33 @@ export default class Home extends Component {
       let result = await Api.getUserBlog()
       if (result) {
         this.setState({
-          blogList: result.data.data
+          blogList: result.data.data,
+          tagList: this.filterTag(result.data.data)
         })
-        console.log('获取所有博客')
-        console.log(this.state.blogList)
       }
     } catch (err) {
       throw err;
     }
+  }
+
+  /**
+   * 筛选标签
+   * return: Array
+   */
+  filterTag(blogArr) {
+    let result = [];
+    blogArr.forEach(blog => { 
+      result = result.concat(blog.tag)
+     })
+    return this.unique(result);
+  }
+
+  /**
+   * 数组去重
+   * return: Array
+   */
+  unique(arr) {
+    return Array.from(new Set(arr));
   }
 
   componentDidMount() {
@@ -37,7 +57,7 @@ export default class Home extends Component {
   render() {
     return (
       <article className="admin-Home">
-        <Sidebar blogList={this.state.blogList}></Sidebar>
+        <Sidebar blogList={this.state.blogList} tagList={this.state.tagList}></Sidebar>
         <Blog></Blog>
       </article>
     )

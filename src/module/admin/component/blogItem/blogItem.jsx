@@ -8,16 +8,14 @@ export default class BlogItem extends Component {
 
   render() {
     const blog = this.props.blog;
-    console.log(blog)
-    console.log(new Date(blog.createTime))
     return (
       <div className="blog-item">
         <h3>{blog.title}</h3>
         <p>
           <i className="fa fa-tag" aria-hidden="true"></i>
-          {blog.tag.map((item,index) => {
+          {blog.tag.map((item, index) => {
             return (
-              <span className="blog-item-tag" key={index}>{item}</span>    
+              <span className="blog-item-tag" key={index}>{item}</span>
             )
           })}
         </p>

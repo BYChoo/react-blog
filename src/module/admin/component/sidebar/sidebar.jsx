@@ -15,9 +15,9 @@ export default class SideBar extends Component {
         <article className="tag-list clearfix">
           <Title title="标签" iconName="fa-tag"></Title>
           <div className="tag-list-wrap">
-            {this.props.blogList.map((item,index) => {
+            {this.props.tagList.map((item,index) => {
               return (
-                <Tag tagName="javascript" key={index}></Tag>
+                <Tag tagName={item} key={index}></Tag>
               )
             })}
           </div>
