@@ -4,11 +4,14 @@ import Tag from 'admin_component/tag/tag.jsx'
 import Editor from 'admin_component/editor/editor.jsx'
 import Button from 'admin_component/button/button.jsx'
 import Api from 'admin_api/api.js';
+import { setCurBlog } from '../../../../action/index';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import './blog.styl';
 
-export default class Blog extends Component {
-  constructor() {
-    super();
+class Blog extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
       title: '',
       tag: '',
@@ -21,9 +24,9 @@ export default class Blog extends Component {
    */
   handleTitle(e) {
     const val = e.target.value;
-    this.setState({
+    this.props.actions.setCurBlog({
       title: val
-    })
+    });
   }
 
   /**
@@ -32,9 +35,9 @@ export default class Blog extends Component {
    */
   handleTag(e) {
     const val = e.target.value;
-    this.setState({
-      tag: val
-    })
+    this.props.actions.setCurBlog({
+      tag: val.split(',')
+    });
   }
 
   /**
@@ -71,15 +74,16 @@ export default class Blog extends Component {
   }
 
   render() {
+    const { curBlog } = this.props;
     return (
       <article className="admin-blog">
         <Title title="请开始你的表演" iconName="fa-pencil"></Title>
         <div className="admin-blog-info">
           <div className="admin-blog-group admin-blog-title">
-            <span>文章标题：<input type="text" onChange={(e) => this.handleTitle(e)} value={this.state.title}/></span>
+            <span>文章标题：<input type="text" value={curBlog.title || ''} onChange={(e) => this.handleTitle(e)} ref={(input) => { this.textInput = input; }}/></span>
           </div>
           <div className="admin-blog-group admin-blog-tag">
-            <span>添加标签：<input type="text" onChange={(e) => this.handleTag(e)} value={this.state.tag}/></span>
+            <span>添加标签：<input type="text" value={curBlog.tag ?curBlog.tag.join() : [].join()} onChange={(e) => this.handleTag(e)}/></span>
           </div>
           <div className="admin-blog-tag-list clearfix">
             <Tag tagName="这是类型"></Tag>
@@ -94,4 +98,18 @@ export default class Blog extends Component {
       </article>
     )
   }
-} 
+}
+
+//mapStateToProps的作用是声明，当state树变化的时候，哪些属性是我们关心的？
+function mapStateToProps(state) {
+  return { curBlog: state.curBlog }
+}
+
+//mapDispatchToProps的作用是把store中的dispatch方法注入给组件
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators({ setCurBlog }, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Blog)

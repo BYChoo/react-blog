@@ -4,13 +4,15 @@ import 'braft-editor/dist/braft.css'
 
 export default class Editor extends React.Component {
   handleHTMLChange = (htmlContent) => {
-    htmlContent = 'asdasdasd';
     this.props.handleContent(htmlContent)
   }
 
   render() {
     const editorProps = {
-      onHTMLChange: this.handleHTMLChange
+      contentFormat: 'html',
+      onHTMLChange: this.handleHTMLChange,
+      initialContent: '<p>init html</p>',
+      contentId: this.props.id
     }
     return (
       <div className="editor" style={{backgroundColor: '#f6f6f6'}}>
