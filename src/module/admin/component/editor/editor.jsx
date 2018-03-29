@@ -11,11 +11,12 @@ export default class Editor extends React.Component {
     const editorProps = {
       contentFormat: 'html',
       onHTMLChange: this.handleHTMLChange,
-      initialContent: '<p>init html</p>',
-      contentId: this.props.id
+      initialContent: this.props.content,
+      contentId: this.props.contentId
     }
+
     return (
-      <div className="editor" style={{backgroundColor: '#f6f6f6'}}>
+      <div className="editor" style={{backgroundColor: '#f6f6f6', marginTop: '10px'}}>
         <BraftEditor {...editorProps} />
       </div>
     )

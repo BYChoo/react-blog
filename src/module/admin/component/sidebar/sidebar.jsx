@@ -10,6 +10,18 @@ import './sidebar.styl';
 class SideBar extends Component {
   constructor(props) {
     super(props);
+    this.handleClickTitle = this.handleClickTitle.bind(this);
+  }
+
+  handleClickTitle() {
+    const { actions } = this.props;
+    actions.setCurBlog({
+      title: '',
+      tag: null,
+      content: '',
+      _id: null,
+      createTime: ''
+    })
   }
 
   render() {
@@ -28,7 +40,7 @@ class SideBar extends Component {
           </div>
         </article>
         <article className="blog-list">
-          <Title title="新建文章" iconName="fa-plus"></Title>
+          <Title title="新建文章" iconName="fa-plus" handleClick={this.handleClickTitle}></Title>
           <div className="blog-list-wrap">
             {this.props.blogList.map((item, index) => {
               return (

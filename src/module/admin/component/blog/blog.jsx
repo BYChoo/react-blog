@@ -53,9 +53,10 @@ class Blog extends Component {
    * 发布文章
    */
   async postBlog() {
+    const { curBlog } = this.props;
     const params = {
-      title: this.state.title,
-      tag: this.state.tag.split(','),
+      title: curBlog.title,
+      tag: curBlog.tag,
       content: this.state.content
     }
     try {
@@ -75,6 +76,7 @@ class Blog extends Component {
 
   render() {
     const { curBlog } = this.props;
+
     return (
       <article className="admin-blog">
         <Title title="请开始你的表演" iconName="fa-pencil"></Title>
@@ -85,11 +87,8 @@ class Blog extends Component {
           <div className="admin-blog-group admin-blog-tag">
             <span>添加标签：<input type="text" value={curBlog.tag ?curBlog.tag.join() : [].join()} onChange={(e) => this.handleTag(e)}/></span>
           </div>
-          <div className="admin-blog-tag-list clearfix">
-            <Tag tagName="这是类型"></Tag>
-          </div>
         </div>
-        <Editor handleContent={(content) => this.handleContent(content)}></Editor>
+        <Editor handleContent={(content) => this.handleContent(content)} contentId={curBlog._id} content={curBlog.content}></Editor>
         <div className="btn-wrapper">
           <Button name="保存" type="primary"></Button>
           <Button name="发布" type="primary" handleClick={() => this.postBlog()}></Button>
