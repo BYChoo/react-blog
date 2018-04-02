@@ -71,6 +71,48 @@ class Api extends Server {
   }
 
   /**
+   * 保存更新文章
+   */
+  async updateBlog(params = {}) {
+    try {
+      let result = await this.axios('POST', '/api/admin/updateBlog', params)
+      if (result && result.status === 200) {
+        return result;
+      } else {
+        let err = {
+          tip: '文章保存更新失败',
+          respone: result,
+          url: '/api/admin/updateBlog'
+        }
+        throw err;
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  /**
+   * 删除文章
+   */
+  async deleteBlog(params = {}) {
+    try {
+      let result = await this.axios('POST', '/api/admin/deleteBlog', params)
+      if (result && result.status === 200) {
+        return result;
+      } else {
+        let err = {
+          tip: '删除文章失败失败',
+          respone: result,
+          url: '/api/admin/deleteBlog'
+        }
+        throw err;
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  /**
    * 获取个人文章
    */
   async getUserBlog(params = {}) {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Api from 'admin_api/api.js';
-import { setLocalStorage, getLocalStorage } from 'admin_api/storage.js';
+import Api from 'api/api.js';
+import { setLocalStorage, getLocalStorage } from 'api/storage.js';
 import './register.styl';
 
 export default class Register extends Component {

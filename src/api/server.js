@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { getLocalStorage } from 'admin_api/storage.js';
+import { getLocalStorage } from 'api/storage.js';
 
 export default class Server {
   axios(method, url, params) {

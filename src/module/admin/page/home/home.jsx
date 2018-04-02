@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Blog from 'admin_component/blog/blog.jsx';
 import Sidebar from 'admin_component/sidebar/sidebar.jsx';
-import Api from 'admin_api/api.js';
+import Api from 'api/api.js';
 import './home.styl';
 
 export default class Home extends Component {
@@ -12,6 +12,8 @@ export default class Home extends Component {
       tagList: [],
       curBlog: {}
     }
+    this.getUserBlog = this.getUserBlog.bind(this);
+    this.filterTag = this.filterTag.bind(this);
   }
 
   /**
@@ -59,7 +61,7 @@ export default class Home extends Component {
     return (
       <article className="admin-Home">
         <Sidebar blogList={this.state.blogList} tagList={this.state.tagList}></Sidebar>
-        <Blog></Blog>
+        <Blog loadData={this.getUserBlog}></Blog>
       </article>
     )
   }

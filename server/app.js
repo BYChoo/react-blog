@@ -5,7 +5,7 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
-const session =  require('koa-session')
+const session = require('koa-session')
 
 const route = require('./routes/index')
 
@@ -15,7 +15,7 @@ onerror(app)
 // session config
 app.keys = ['koa key'];
 const CONFIG = {
-	key: 'koa:sess', /** (string) cookie key (default is koa:sess) */
+  key: 'koa:sess', /** (string) cookie key (default is koa:sess) */
   /** (number || 'session') maxAge in ms (default is 1 days) */
   /** 'session' will result in a cookie that expires when session/browser is closed */
   /** Warning: If a session cookie is stolen, this cookie will never expire */
@@ -30,7 +30,7 @@ app.use(session(CONFIG, app));
 
 // middlewares
 app.use(bodyparser({
-  enableTypes:['json', 'form', 'text']
+  enableTypes: ['json', 'form', 'text']
 }))
 app.use(json())
 app.use(logger())
@@ -45,15 +45,19 @@ app.use(async (ctx, next) => {
 })
 
 // 前后端根据请求鉴权
-app.use(async(ctx, next) => {
-	if (ctx.request.header.authorization) {
-		await next();	
-	}	else {
-    ctx.response.status = 401;
-    ctx.response.body = {
-      message: 'token is not defined'
-    };
-	}
+app.use(async (ctx, next) => {
+  if (/\/api\/admin/ig.test(ctx.request.url) && ctx.request.url !== '/api/admin/getUserBlog') {
+    if (ctx.request.header.authorization) {
+      await next();
+    } else {
+      ctx.response.status = 401;
+      ctx.response.body = {
+        message: 'token is not defined'
+      };
+    }
+  } else {
+    await next();
+  }
 })
 
 // routes

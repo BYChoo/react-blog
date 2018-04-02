@@ -100,12 +100,54 @@ router.post('/postBlog', async (ctx, next) => {
 })
 
 /**
+ * 管理系统用户更新保存文章
+ */
+router.post('/updateBlog', async (ctx, next) => {
+	const { title, _id, content, tag } = ctx.request.body;
+	try {
+		let result = new Blog().updateBlog({ _id }, { content, title, tag })
+		if (result) {
+			ctx.body = {
+				msg: 'success'
+			}
+		}
+	} catch (error) {
+		ctx.response.status = 400;
+		ctx.response.body = {
+			message: 'update user blog error'
+		}
+		throw error;
+	}
+})
+
+/**
+ * 用户删除文章
+ */
+router.post('/deleteBlog', async (ctx, next) => {
+	const { _id } = ctx.request.body;
+	try {
+		let result = new Blog().deleteBlog({ _id })
+		if (result) {
+			ctx.body = {
+				msg: 'success'
+			}
+		}
+	} catch (error) {
+		ctx.response.status = 400;
+		ctx.response.body = {
+			message: 'update user blog error'
+		}
+		throw error;
+	}
+})
+
+/**
  * 管理系统用户获取所有文章
  */
 router.get('/getUserBlog', async (ctx, next) => {
 	try {
 		let doc = {
-			author: ctx.request.header.authorization
+			author: '1111@qq.com'
 		}
 		let result = await new Blog().findBlog(doc);
 		if (result) {

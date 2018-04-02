@@ -53,4 +53,28 @@ blogSchema.methods.findBlog = function(doc) {
 	})
 }
 
+/**
+ * 更新保存博客
+ */
+blogSchema.methods.updateBlog = function(obj,doc) {
+	return new Promise((resolve, reject) => {
+		Mongoose.model('blog').update(obj,doc,(err, docs) => {
+			if (err) return reject(err);
+			else return resolve(docs)
+		})
+	})
+}
+
+/**
+ * 删除博客
+ */
+blogSchema.methods.deleteBlog = function(obj) {
+	return new Promise((resolve, reject) => {
+		Mongoose.model('blog').remove(obj,(err, docs) => {
+			if (err) return reject(err);
+			else return resolve(docs)
+		})
+	})
+}
+
 module.exports = Mongoose.model('blog', blogSchema);

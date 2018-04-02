@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Api from 'admin_api/api.js';
-import { setLocalStorage, getLocalStorage } from 'admin_api/storage.js';
+import Api from 'api/api.js';
+import { setLocalStorage, getLocalStorage } from 'api/storage.js';
 import './login.styl';
 
 export default class Login extends Component {
@@ -70,7 +70,7 @@ export default class Login extends Component {
    * 生命周期: 组件创建前调用
    */
   componentWillMount() {
-    // this.checkUserState();
+    this.checkUserState();
   }
 
   render() {

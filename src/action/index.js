@@ -8,3 +8,10 @@ export const setCurBlog = (blog) => {
     blog
   }
 }
+
+export const setCurBlogDetail = (blog) => {
+  return {
+    type: 'SET_CUR_BLOG_DETAIL',
+    blog
+  }
+}

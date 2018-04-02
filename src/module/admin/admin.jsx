@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import Home from 'admin_page/home/home.jsx';
 import Login from 'admin_page/login/login.jsx';
 import Register from 'admin_page/register/register.jsx'
-import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 class admin extends Component {
-  render() {  
+  render() {
     return (
       <Router>
         <div>

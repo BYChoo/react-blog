@@ -86,6 +86,7 @@ module.exports = {
     alias: {
       'module': path.join(__dirname, "../src/module/"),
       'static': path.join(__dirname, "../src/static/"),
+      'api': path.join(__dirname, "../src/api/"),
       // front config
       'front_component': path.join(__dirname, "../src/module/front/component/"),
       'front_page': path.join(__dirname, "../src/module/front/page/"),

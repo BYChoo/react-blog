@@ -5,7 +5,7 @@ import './tag.styl'
 export default class Tag extends Component {
   render() {
     return (
-      <Link to="/" className="tag">asd</Link>
+      <Link to="/" className="tag">{this.props.name}</Link>
     )
   }
 }
